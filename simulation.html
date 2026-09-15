@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>סימולציה מלאה - DentaLiz</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html"><span class="tooth">🦷</span> DentaLiz</a>
+      <nav class="main-nav">
+        <a href="index.html">דף הבית</a>
+        <a href="math/index.html">מתמטיקה</a>
+        <a href="chemistry/index.html">כימיה</a>
+        <a href="simulation.html" class="active">סימולציה מלאה</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="breadcrumb"><a href="index.html">דף הבית</a> &laquo; סימולציה מלאה</div>
+
+    <div id="sim-intro">
+      <section class="hero">
+        <h1>⏱️ סימולציה מלאה</h1>
+        <p>
+          סימולציה זו מדמה את מבנה מבחן הקבלה: חלק מתמטיקה וחלק כימיה, כל אחד בתנאי זמן אמיתיים.
+          במהלך כל חלק לא יוצג משוב מיידי על התשובות - בדיוק כמו במבחן אמיתי - ותוכלו לראות את הציון
+          המלא ואת הפתרונות המפורטים רק בסיום שני החלקים.
+        </p>
+      </section>
+
+      <div class="sim-parts">
+        <div class="sim-part">
+          <h3>📐 חלק מתמטיקה</h3>
+          <p>20 שאלות &middot; טיימר של שעה אחת (60 דקות)</p>
+        </div>
+        <div class="sim-part">
+          <h3>🧪 חלק כימיה</h3>
+          <p>30 שאלות &middot; טיימר של שעה וחצי (90 דקות)</p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        טיפ: אפשר לבחור באיזה חלק להתחיל. שני החלקים ירוצו ברצף באותה סימולציה, ובסיום תוצג טבלת ציונים
+        מלאה עם אפשרות לחזור על כל שאלה ולראות את הפתרון המלא שלה.
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn" id="sim-start-math-first">התחלה עם מתמטיקה</button>
+        <button type="button" class="btn secondary" id="sim-start-chem-first">התחלה עם כימיה</button>
+      </div>
+    </div>
+
+    <div id="sim-container" hidden></div>
+  </main>
+
+  <footer class="site-footer">
+    DentaLiz &middot; אתר תרגול חינמי להכנה למבחני קבלה לרפואת שיניים
+  </footer>
+
+  <script src="js/topics.js"></script>
+  <script src="data/math/rate.js"></script>
+  <script src="data/math/geometry.js"></script>
+  <script src="data/math/motion.js"></script>
+  <script src="data/math/probability.js"></script>
+  <script src="data/chemistry/stoichiometry.js"></script>
+  <script src="data/chemistry/bonding.js"></script>
+  <script src="data/chemistry/redox.js"></script>
+  <script src="data/chemistry/energy.js"></script>
+  <script src="js/quiz-engine.js"></script>
+  <script src="js/simulation.js"></script>
+</body>
+</html>
