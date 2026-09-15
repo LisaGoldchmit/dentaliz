@@ -1,21 +1,21 @@
 /* DentaLiz - עיצוב כללי, RTL מלא */
 
 :root {
-  --color-primary: #0f9d8f;
-  --color-primary-dark: #0b7a6f;
-  --color-primary-light: #e5f7f5;
-  --color-accent: #2b6f76;
-  --color-bg: #f7faf9;
+  --color-primary: #4fb0e0;
+  --color-primary-dark: #2b86b8;
+  --color-primary-light: #e8f6fc;
+  --color-accent: #e07ba3;
+  --color-bg: #fbf7fa;
   --color-card: #ffffff;
-  --color-text: #1f2d2b;
-  --color-muted: #5c6b68;
-  --color-border: #dfe9e7;
+  --color-text: #2f2b36;
+  --color-muted: #7c7484;
+  --color-border: #f0dfe8;
   --color-correct: #1a8f4c;
   --color-correct-bg: #e6f6ec;
   --color-wrong: #c62828;
   --color-wrong-bg: #fdecea;
   --radius: 14px;
-  --shadow: 0 2px 10px rgba(15, 40, 37, 0.08);
+  --shadow: 0 2px 10px rgba(180, 100, 140, 0.1);
 }
 
 * {
@@ -163,7 +163,7 @@ main {
 
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(15, 40, 37, 0.14);
+  box-shadow: 0 6px 18px rgba(180, 100, 140, 0.16);
 }
 
 .card .card-icon {
