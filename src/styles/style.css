@@ -616,6 +616,16 @@ main {
   margin-bottom: 26px;
 }
 
+/* בוחר הסימולציות משתמש ב-button ולא בקישור, ולכן צריך לאפס את ברירות
+   המחדל של כפתור כדי שייראה זהה לשאר הכרטיסים */
+.sim-card {
+  width: 100%;
+  text-align: right;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 /* ---------- Simulation intro ---------- */
 
 .sim-parts {

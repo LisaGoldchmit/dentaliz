@@ -3,37 +3,21 @@ import Breadcrumb from "../components/Breadcrumb.jsx";
 import Quiz from "../components/Quiz.jsx";
 import ResultsReview from "../components/ResultsReview.jsx";
 import usePageTitle from "../utils/usePageTitle.js";
-import { TOPICS, getTopicQuestions } from "../data/topics.js";
-import { shuffleArray, countCorrect } from "../utils/quiz.js";
+import { SIMULATIONS } from "../data/simulations/index.js";
+import { countCorrect } from "../utils/quiz.js";
 
 const PART_META = {
-  math: { label: "מתמטיקה", icon: "📐", count: 20, seconds: 60 * 60 },
-  chemistry: { label: "כימיה", icon: "🧪", count: 30, seconds: 90 * 60 }
+  math: { label: "מתמטיקה", icon: "📐", seconds: 60 * 60 },
+  chemistry: { label: "כימיה", icon: "🧪", seconds: 90 * 60 }
 };
-
-// בוחר שאלות בפיזור מאוזן בין הנושאים. סדר הנושאים מעורבב בכל הרצה, כך
-// שכאשר הכמות אינה מתחלקת שווה בשווה, הנושא שמקבל שאלה "נוספת" משתנה.
-function selectBalanced(subject, count) {
-  const topics = shuffleArray(TOPICS[subject].topics);
-  const pools = topics.map((t) => shuffleArray(getTopicQuestions(subject, t.key)));
-  const selected = [];
-  let i = 0;
-  while (selected.length < count) {
-    if (pools.every((p) => p.length === 0)) break;
-    const pool = pools[i % pools.length];
-    if (pool.length > 0) selected.push(pool.shift());
-    i++;
-  }
-  return shuffleArray(selected.slice(0, count));
-}
 
 export default function Simulation() {
   usePageTitle("סימולציה מלאה - DentaLizi");
 
   const [phase, setPhase] = useState("intro");
+  const [sim, setSim] = useState(null);
   const [order, setOrder] = useState(["math", "chemistry"]);
   const [partIndex, setPartIndex] = useState(0);
-  const [questions, setQuestions] = useState({ math: [], chemistry: [] });
   const [answers, setAnswers] = useState({ math: [], chemistry: [] });
   const containerRef = useRef(null);
 
@@ -43,14 +27,16 @@ export default function Simulation() {
     }
   }, [phase, partIndex]);
 
-  function startSimulation(partOrder) {
+  function pickSimulation(selected) {
+    setSim(selected);
+    setPartIndex(0);
+    setAnswers({ math: [], chemistry: [] });
+    setPhase("chooseOrder");
+  }
+
+  function startWith(partOrder) {
     setOrder(partOrder);
     setPartIndex(0);
-    setQuestions({
-      math: selectBalanced("math", PART_META.math.count),
-      chemistry: selectBalanced("chemistry", PART_META.chemistry.count)
-    });
-    setAnswers({ math: [], chemistry: [] });
     setPhase("transition");
   }
 
@@ -66,22 +52,24 @@ export default function Simulation() {
 
   const subject = order[partIndex];
   const meta = PART_META[subject];
+  const partQuestions = sim ? sim[subject] : [];
 
   return (
     <>
-      <Breadcrumb
-        items={[{ label: "דף הבית", to: "/" }, { label: "סימולציה מלאה" }]}
-      />
+      <Breadcrumb items={[{ label: "דף הבית", to: "/" }, { label: "סימולציה מלאה" }]} />
 
       {phase === "intro" ? (
         <div>
           <section className="hero">
             <h1>⏱️ סימולציה מלאה</h1>
             <p>
-              סימולציה זו מדמה את מבנה מבחן הקבלה: חלק מתמטיקה וחלק כימיה, כל אחד
-              בתנאי זמן אמיתיים. במהלך כל חלק לא יוצג משוב מיידי על התשובות - בדיוק
-              כמו במבחן אמיתי - ותוכלו לראות את הציון המלא ואת הפתרונות המפורטים רק
-              בסיום שני החלקים.
+              כל סימולציה היא מבחן שלם וקבוע, שמדמה את מבנה מבחן הידע: חלק מתמטיקה
+              וחלק כימיה, כל אחד בתנאי זמן אמיתיים. השאלות בסימולציות אינן מופיעות
+              בתרגול לפי נושאים, כך שאפשר לתרגל ואז להיבחן על חומר חדש.
+            </p>
+            <p>
+              במהלך כל חלק לא יוצג משוב מיידי על התשובות - בדיוק כמו במבחן אמיתי -
+              ותוכלו לראות את הציון המלא ואת הפתרונות המפורטים רק בסיום שני החלקים.
             </p>
           </section>
 
@@ -96,39 +84,60 @@ export default function Simulation() {
             </div>
           </div>
 
-          <div className="info-box">
-            טיפ: אפשר לבחור באיזה חלק להתחיל. שני החלקים ירוצו ברצף באותה סימולציה,
-            ובסיום תוצג טבלת ציונים מלאה עם אפשרות לחזור על כל שאלה ולראות את
-            הפתרון המלא שלה.
-          </div>
-
-          <div className="btn-row">
-            <button
-              type="button"
-              className="btn"
-              onClick={() => startSimulation(["math", "chemistry"])}
-            >
-              התחלה עם מתמטיקה
-            </button>
-            <button
-              type="button"
-              className="btn secondary"
-              onClick={() => startSimulation(["chemistry", "math"])}
-            >
-              התחלה עם כימיה
-            </button>
+          <h2>בחרו סימולציה</h2>
+          {SIMULATIONS.length === 0 ? <p>אין כרגע סימולציות זמינות.</p> : null}
+          <div className="topic-list">
+            {SIMULATIONS.map((s) => (
+              <button
+                type="button"
+                className="card sim-card"
+                key={s.id}
+                onClick={() => pickSimulation(s)}
+              >
+                <h3>{s.label}</h3>
+                <span className="card-count">
+                  {s.math.length + s.chemistry.length} שאלות
+                </span>
+              </button>
+            ))}
           </div>
         </div>
       ) : null}
 
       <div ref={containerRef}>
+        {phase === "chooseOrder" && sim ? (
+          <div className="hero">
+            <h2>{sim.label}</h2>
+            <p>
+              באיזה חלק תרצו להתחיל? שני החלקים ירוצו ברצף באותה סימולציה, ובסיום
+              תוצג טבלת ציונים מלאה עם הפתרון המלא לכל שאלה.
+            </p>
+            <div className="btn-row">
+              <button
+                type="button"
+                className="btn"
+                onClick={() => startWith(["math", "chemistry"])}
+              >
+                התחלה עם מתמטיקה
+              </button>
+              <button
+                type="button"
+                className="btn secondary"
+                onClick={() => startWith(["chemistry", "math"])}
+              >
+                התחלה עם כימיה
+              </button>
+            </div>
+          </div>
+        ) : null}
+
         {phase === "transition" ? (
           <div className="hero">
             <h2>
               {meta.icon} חלק {partIndex + 1}: {meta.label}
             </h2>
             <p>
-              חלק זה כולל {meta.count} שאלות, עם טיימר של{" "}
+              חלק זה כולל {partQuestions.length} שאלות, עם טיימר של{" "}
               {meta.seconds >= 3600
                 ? `${meta.seconds / 3600} שעות`
                 : `${meta.seconds / 60} דקות`}
@@ -145,46 +154,44 @@ export default function Simulation() {
 
         {phase === "part" ? (
           <Quiz
-            key={subject}
-            questions={questions[subject]}
+            key={`${sim.id}-${subject}`}
+            questions={partQuestions}
             mode="exam"
             timerSeconds={meta.seconds}
-            title={`${meta.icon} ${meta.label} - סימולציה`}
+            title={`${meta.icon} ${meta.label} - ${sim.label}`}
             onFinish={(score, partAnswers) => handlePartFinish(subject, partAnswers)}
           />
         ) : null}
 
-        {phase === "results" ? (
-          <FinalResults questions={questions} answers={answers} />
-        ) : null}
+        {phase === "results" ? <FinalResults sim={sim} answers={answers} /> : null}
       </div>
     </>
   );
 }
 
-function FinalResults({ questions, answers }) {
-  const mathCorrect = countCorrect(questions.math, answers.math);
-  const chemCorrect = countCorrect(questions.chemistry, answers.chemistry);
+function FinalResults({ sim, answers }) {
+  const mathCorrect = countCorrect(sim.math, answers.math);
+  const chemCorrect = countCorrect(sim.chemistry, answers.chemistry);
   const totalCorrect = mathCorrect + chemCorrect;
-  const totalCount = questions.math.length + questions.chemistry.length;
+  const totalCount = sim.math.length + sim.chemistry.length;
   const percent = totalCount > 0 ? Math.round((totalCorrect / totalCount) * 100) : 0;
 
   return (
     <>
       <div className="results-summary">
-        <h2>תוצאות הסימולציה המלאה</h2>
+        <h2>תוצאות {sim.label}</h2>
         <div className="results-score">
           {totalCorrect} / {totalCount}
         </div>
         <div className="results-percent">ציון כולל: {percent}%</div>
         <p className="results-percent">
-          מתמטיקה: {mathCorrect} / {questions.math.length} &middot; כימיה: {chemCorrect} /{" "}
-          {questions.chemistry.length}
+          מתמטיקה: {mathCorrect} / {sim.math.length} &middot; כימיה: {chemCorrect} /{" "}
+          {sim.chemistry.length}
         </p>
       </div>
 
       <ResultsReview
-        questions={questions.math}
+        questions={sim.math}
         answers={answers.math}
         reviewHeading="📐 סקירת חלק המתמטיקה"
         showSummary={false}
@@ -192,7 +199,7 @@ function FinalResults({ questions, answers }) {
       />
 
       <ResultsReview
-        questions={questions.chemistry}
+        questions={sim.chemistry}
         answers={answers.chemistry}
         reviewHeading="🧪 סקירת חלק הכימיה"
         showSummary={false}

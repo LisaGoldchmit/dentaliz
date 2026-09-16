@@ -48,8 +48,11 @@ src/
     Simulation.jsx         the timed two-part simulation
   data/
     topics.js              TOPICS metadata + QUESTION_BANKS wiring + helpers
-    math/<topic>.js        one question bank per topic
+    math/<topic>.js        one practice question bank per topic
     chemistry/<topic>.js
+    simulations/
+      index.js             SIMULATIONS array + getSimulation(id)
+      sim-0N.js            one fixed full exam each (own questions)
 public/favicon.svg         copied as-is to the build output
 .github/workflows/deploy.yml
 ```
@@ -108,14 +111,28 @@ and offers "הצג פתרון מלא". No timer.
 "תרגול נוסף (סדר חדש)" bumps a `runId` counter, which both recomputes the
 shuffled array and is used as `key` on `<Quiz>` so all quiz state resets.
 
-**Simulation** (`Simulation.jsx`) runs two timed parts — 20 math questions in
-60 minutes and 30 chemistry in 90 — in whichever order the user picks. It moves
-through phases `intro → transition → part → (transition → part) → results`.
-`selectBalanced()` picks questions round-robin from each topic's shuffled pool,
-so every topic is represented; the topic order is itself shuffled so the topic
-that gets the extra question when the count doesn't divide evenly varies per run.
-Parts use `mode="exam"`: no feedback until submission, plus a jump-grid for
-navigating between questions.
+**Simulations** (`Simulation.jsx`) are **fixed full exams** — each one always
+serves the same questions, in the same order. They live in
+`src/data/simulations/sim-0N.js`, each exporting
+`{ id, label, math: [...], chemistry: [...] }` with its own questions. Those
+questions are deliberately **not** in the practice banks, so a candidate can
+drill by topic and then sit an exam on unseen material. Nothing is sampled or
+shuffled at runtime.
+
+The page moves through phases
+`intro (pick a simulation) → chooseOrder → transition → part → (transition → part) → results`.
+Parts run 20 math in 60 minutes and 30 chemistry in 90, in whichever order the
+user picks, using `mode="exam"`: no feedback until submission, plus a jump-grid
+for navigating between questions.
+
+### Add a new simulation
+
+Create `src/data/simulations/sim-0N.js` exporting a `simulation` object in the
+shape above (unique question `id`s — the convention is `simN-math-1`,
+`simN-chem-1`). That's the whole job: `index.js` picks up `./sim-*.js` via
+`import.meta.glob` and sorts by filename, so there's no list to edit and the
+picker renders it automatically. Question counts per part are read from the
+arrays themselves, but the timers in `PART_META` are fixed at 60/90 minutes.
 
 **The timer** lives in `Quiz.jsx` and only runs when `timerSeconds` is set. A
 `setInterval` decrements `remaining` once per second; a separate effect watches
