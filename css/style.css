@@ -57,7 +57,7 @@ img, svg {
 .site-header {
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: #fff;
-  padding: 14px 20px;
+  padding: 10px 20px;
   box-shadow: var(--shadow);
   position: sticky;
   top: 0;
@@ -83,9 +83,12 @@ img, svg {
 }
 
 .brand-logo {
-  height: 100px;
+  height: 140px;
   width: auto;
   display: block;
+  margin: -38px 0;
+  position: relative;
+  z-index: 1;
 }
 
 .main-nav {
