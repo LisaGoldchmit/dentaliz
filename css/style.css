@@ -83,10 +83,10 @@ img, svg {
 }
 
 .brand-logo {
-  height: 210px;
+  height: 150px;
   width: auto;
   display: block;
-  margin: -83px 0;
+  margin: -54px 0;
   position: relative;
   z-index: 1;
 }
