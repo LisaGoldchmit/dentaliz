@@ -44,6 +44,14 @@ body {
   flex-direction: column;
 }
 
+/* React מרנדר הכל בתוך #root, ולכן הוא זה שצריך לשאת את פריסת העמוד
+   (header / main / footer) כדי ש-main יוכל למלא את הגובה והפוטר יישאר למטה */
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 a {
   color: inherit;
 }
@@ -55,13 +63,12 @@ img, svg {
 /* ---------- Header / Nav ---------- */
 
 /* גובה ההדר קבוע ומוגדר במפורש, כדי שגובה הלוגו יוכל להיות אחוז יציב ממנו
-   (80px הדר; 56px לוגו = בדיוק 70% ממנו; 12px שוליים קבועים מעל ומתחת,
-   הנובעים ממרכוז flex של ((80-56)/2) - אין padding אנכי נפרד, המרכוז כולו מ-flex) */
+   (108px הדר; 88px לוגו; המרכוז האנכי כולו מ-flex, אין padding אנכי נפרד) */
 .site-header {
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: #fff;
-  padding: 0 20px;
-  height: 80px;
+  padding: 0 14px;
+  height: 108px;
   display: flex;
   align-items: center;
   box-shadow: var(--shadow);
@@ -70,15 +77,16 @@ img, svg {
   z-index: 20;
 }
 
+/* direction: rtl (ולא ltr) כדי שהילד הראשון ב-DOM (.brand, הלוגו) יוצג בצד
+   ימין (תחילת השורה ב-RTL) והאחרון (.btn-signup) בצד שמאל - תואם לכיוון
+   הקריאה בעברית, בו הלוגו הוא "ההתחלה" של העמוד */
 .header-inner {
-  max-width: 1100px;
-  margin: 0 auto;
   width: 100%;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 14px;
-  direction: ltr;
+  direction: rtl;
 }
 
 .brand {
@@ -91,8 +99,8 @@ img, svg {
 }
 
 .brand-logo {
-  height: 56px;
-  max-height: 56px;
+  height: 88px;
+  max-height: 88px;
   width: auto;
   display: block;
 }
@@ -160,8 +168,8 @@ img, svg {
   }
 
   .brand-logo {
-    height: 47px;
-    max-height: 47px;
+    height: 64px;
+    max-height: 64px;
   }
 
   .main-nav {
@@ -226,6 +234,32 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
+}
+
+/* ---------- Homepage / landing ---------- */
+
+.about-teaser {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+.about-teaser-text h2 {
+  margin-top: 0;
+  color: var(--color-accent);
+}
+
+.about-teaser-text p {
+  color: var(--color-muted);
+}
+
+.cta-section h2 {
+  text-align: center;
+  color: var(--color-accent);
+  margin-bottom: 16px;
 }
 
 .section-grid h3 {
@@ -580,21 +614,6 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 14px;
   margin-bottom: 26px;
-}
-
-.shuffle-card {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-  color: #fff;
-}
-
-.shuffle-card h3,
-.shuffle-card p {
-  color: #fff;
-}
-
-.shuffle-card .card-count {
-  background: rgba(255, 255, 255, 0.25);
-  color: #fff;
 }
 
 /* ---------- Simulation intro ---------- */

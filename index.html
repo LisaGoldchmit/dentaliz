@@ -4,65 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DentaLizi - הדרך שלך לרפואת שיניים</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="brand" href="index.html">
-        <img class="brand-logo" src="dentalizi-logo2.png" alt="DentaLizi" />
-      </a>
-      <nav class="main-nav">
-        <a href="index.html" class="active">דף הבית</a>
-        <a href="chemistry/index.html">כימיה</a>
-        <a href="math/index.html">מתמטיקה</a>
-        <a href="simulation.html">סימולציה מלאה</a>
-      </nav>
-      <a class="btn-signup" href="#">הרשמה / התחברות</a>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <h1>DentaLizi</h1>
-      <p class="tagline">ללמוד חכם, להתקבל באיזי</p>
-      <p>
-        DentaLizi הוא אתר תרגול המיועד לעתידיים/ות מועמדים/ות ללימודי רפואת שיניים,
-        ומתמקד בתרגול שאלות במתמטיקה ובכימיה בסגנון מבחני הקבלה.
-        כל שאלה מלווה בפתרון מלא ומפורט בעברית, כדי שתוכלו/ן להבין לא רק מה התשובה הנכונה - אלא גם למה.
-      </p>
-      <p>
-        בחרו נושא לתרגול, נסו את מצב ה"ערבוב" לתרגול מעורב, או התכוננו לאמת המידה עם סימולציה מלאה בתנאי זמן.
-      </p>
-    </section>
-
-    <section class="section-grid">
-      <a class="card" href="math/index.html">
-        <h3>מתמטיקה</h3>
-        <p>בעיות מילוליות, סדרות, הסתברות, גיאומטריה, טריגונומטריה, חדו"א ועוד - עם תרגול לפי נושא ומצב ערבוב.</p>
-        <span class="card-count">8 נושאים &middot; 80 שאלות</span>
-      </a>
-
-      <a class="card" href="chemistry/index.html">
-        <h3>כימיה</h3>
-        <p>מבנה האטום, קשר כימי, סוגי חומרים, סטוכיומטריה, אנרגיה, חמצון חיזור, חומצה בסיס וכימיה אורגנית - עם תרגול לפי נושא ומצב ערבוב.</p>
-        <span class="card-count">8 נושאים &middot; 80 שאלות</span>
-      </a>
-
-      <a class="card" href="simulation.html">
-        <h3>סימולציה מלאה</h3>
-        <p>בחינה מלאה בתנאי זמן אמיתיים: 20 שאלות מתמטיקה (שעה) ו-30 שאלות כימיה (שעה וחצי).</p>
-        <span class="card-count">מומלץ לקראת המבחן האמיתי</span>
-      </a>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    DentaLizi &middot; אתר תרגול להכנה למבחני קבלה לרפואת שיניים
-  </footer>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
