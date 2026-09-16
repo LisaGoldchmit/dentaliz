@@ -77,45 +77,15 @@ img, svg {
 .brand {
   display: flex;
   align-items: center;
-  gap: 4px;
   text-decoration: none;
   color: #fff;
   justify-self: start;
 }
 
-.brand .brand-icon {
-  width: 34px;
-  height: 34px;
-  flex-shrink: 0;
-}
-
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.15;
-}
-
-.brand-name {
-  font-family: "Poppins", "Heebo", sans-serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: 0.2px;
-}
-
-.brand-name .logo-letter {
-  font-size: 0.82em;
-  font-weight: 900;
-}
-
-.brand-tagline {
-  font-size: 0.72rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.92);
-  letter-spacing: 0.2px;
-}
-
-.brand-tagline strong {
-  font-weight: 800;
+.brand-logo {
+  height: 58px;
+  width: auto;
+  display: block;
 }
 
 .main-nav {

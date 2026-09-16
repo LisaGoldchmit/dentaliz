@@ -7,7 +7,9 @@
   const CHEM_SECONDS = 90 * 60; // שעה וחצי
 
   function selectBalanced(subject, count) {
-    const topics = window.TOPICS[subject].topics;
+    // מערבבים את סדר הנושאים בכל הרצה, כדי שכאשר הכמות אינה מתחלקת שווה בשווה
+    // בין הנושאים, הנושא שמקבל שאלה "נוספת" ישתנה בכל סימולציה ולא יהיה תמיד אותו נושא קבוע
+    const topics = window.QuizEngine.shuffleArray(window.TOPICS[subject].topics);
     const pools = topics.map(function (t) {
       return window.QuizEngine.shuffleArray(window.getTopicQuestions(subject, t.key));
     });
