@@ -1,4 +1,4 @@
-// DentaLiz - בנק שאלות: כימיה - מבנה וקישור
+// DentaLizi - בנק שאלות: כימיה - מבנה וקישור
 window.QUESTION_BANKS = window.QUESTION_BANKS || {};
 window.QUESTION_BANKS.chemistry = window.QUESTION_BANKS.chemistry || {};
 

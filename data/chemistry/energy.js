@@ -1,4 +1,4 @@
-// DentaLiz - בנק שאלות: כימיה - אנרגיה
+// DentaLizi - בנק שאלות: כימיה - אנרגיה
 window.QUESTION_BANKS = window.QUESTION_BANKS || {};
 window.QUESTION_BANKS.chemistry = window.QUESTION_BANKS.chemistry || {};
 

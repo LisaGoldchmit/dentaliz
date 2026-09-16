@@ -1,4 +1,4 @@
-// DentaLiz - בניית עמוד בחירת נושא (מתמטיקה / כימיה)
+// DentaLizi - בניית עמוד בחירת נושא (מתמטיקה / כימיה)
 // מצפה ש-window.TOPICS ו-window.QUESTION_BANKS כבר נטענו, ושלגוף הדף יש data-subject
 
 (function () {

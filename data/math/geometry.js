@@ -1,4 +1,4 @@
-// DentaLiz - בנק שאלות: מתמטיקה - גיאומטריה
+// DentaLizi - בנק שאלות: מתמטיקה - גיאומטריה
 window.QUESTION_BANKS = window.QUESTION_BANKS || {};
 window.QUESTION_BANKS.math = window.QUESTION_BANKS.math || {};
 

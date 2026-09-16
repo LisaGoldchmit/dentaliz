@@ -1,4 +1,4 @@
-// DentaLiz - בנק שאלות: כימיה - סטוכיומטריה
+// DentaLizi - בנק שאלות: כימיה - סטוכיומטריה
 window.QUESTION_BANKS = window.QUESTION_BANKS || {};
 window.QUESTION_BANKS.chemistry = window.QUESTION_BANKS.chemistry || {};
 

@@ -1,4 +1,4 @@
-// DentaLiz - בנק שאלות: מתמטיקה - בעיות הספק
+// DentaLizi - בנק שאלות: מתמטיקה - בעיות הספק
 window.QUESTION_BANKS = window.QUESTION_BANKS || {};
 window.QUESTION_BANKS.math = window.QUESTION_BANKS.math || {};
 

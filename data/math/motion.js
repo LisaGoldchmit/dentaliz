@@ -1,4 +1,4 @@
-// DentaLiz - בנק שאלות: מתמטיקה - בעיות תנועה
+// DentaLizi - בנק שאלות: מתמטיקה - בעיות תנועה
 window.QUESTION_BANKS = window.QUESTION_BANKS || {};
 window.QUESTION_BANKS.math = window.QUESTION_BANKS.math || {};
 

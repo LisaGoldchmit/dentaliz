@@ -1,4 +1,4 @@
-// DentaLiz - עמוד תרגול (לפי נושא או ערבוב)
+// DentaLizi - עמוד תרגול (לפי נושא או ערבוב)
 
 (function () {
   function getQueryParam(name) {
@@ -37,7 +37,7 @@
       title = subjectInfo.icon + " " + topicLabel;
     }
 
-    document.title = title + " - DentaLiz";
+    document.title = title + " - DentaLizi";
     if (titleEl) titleEl.textContent = title;
     if (breadcrumbEl) {
       breadcrumbEl.innerHTML =

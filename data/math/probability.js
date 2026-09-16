@@ -1,4 +1,4 @@
-// DentaLiz - בנק שאלות: מתמטיקה - הסתברות
+// DentaLizi - בנק שאלות: מתמטיקה - הסתברות
 window.QUESTION_BANKS = window.QUESTION_BANKS || {};
 window.QUESTION_BANKS.math = window.QUESTION_BANKS.math || {};
 

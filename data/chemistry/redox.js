@@ -1,4 +1,4 @@
-// DentaLiz - בנק שאלות: כימיה - חמצון חיזור
+// DentaLizi - בנק שאלות: כימיה - חמצון חיזור
 window.QUESTION_BANKS = window.QUESTION_BANKS || {};
 window.QUESTION_BANKS.chemistry = window.QUESTION_BANKS.chemistry || {};
 
