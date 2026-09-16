@@ -54,10 +54,15 @@ img, svg {
 
 /* ---------- Header / Nav ---------- */
 
+/* גובה ההדר קבוע ומוגדר במפורש, כדי שגובה הלוגו יוכל להיות אחוז יציב ממנו
+   (88px הדר; 68px לוגו = 77% ממנו; 10px שוליים קבועים מעל ומתחת) */
 .site-header {
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: #fff;
-  padding: 16px 20px;
+  padding: 0 20px;
+  height: 88px;
+  display: flex;
+  align-items: center;
   box-shadow: var(--shadow);
   position: sticky;
   top: 0;
@@ -67,6 +72,7 @@ img, svg {
 .header-inner {
   max-width: 1100px;
   margin: 0 auto;
+  width: 100%;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -84,6 +90,7 @@ img, svg {
 
 .brand-logo {
   height: 68px;
+  max-height: 68px;
   width: auto;
   display: block;
 }
@@ -131,14 +138,28 @@ img, svg {
 }
 
 @media (max-width: 720px) {
+  /* במסך צר ההדר עובר לפריסה מוערמת (לוגו / ניווט / כפתור), ולכן גובהו
+     חייב להיות גמיש ולא קבוע; הלוגו עצמו עדיין מקבל גובה קבוע משלו,
+     מכוון לפריסה המוערמת, עם שוליים קבועים מעל ומתחת */
+  .site-header {
+    height: auto;
+    padding: 14px 20px;
+  }
+
   .header-inner {
     grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
+    row-gap: 10px;
   }
 
   .brand {
     justify-self: center;
+  }
+
+  .brand-logo {
+    height: 56px;
+    max-height: 56px;
   }
 
   .main-nav {
