@@ -4,12 +4,12 @@
   --color-primary: #14b8a6;
   --color-primary-dark: #0c8f80;
   --color-primary-light: #e3faf6;
-  --color-accent: #ec4899;
-  --color-accent-light: #fdecf4;
+  --color-accent: #0c8f80;
+  --color-accent-light: #d5f3ee;
   --color-bg: #f3fbfa;
   --color-card: #ffffff;
-  --color-text: #1f2d2b;
-  --color-muted: #5c6b69;
+  --color-text: #0b4a44;
+  --color-muted: #3f6b64;
   --color-border: #dcefec;
   --color-correct: #1a8f4c;
   --color-correct-bg: #e6f6ec;
@@ -55,7 +55,7 @@ img, svg {
 /* ---------- Header / Nav ---------- */
 
 .site-header {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: #fff;
   padding: 14px 20px;
   box-shadow: var(--shadow);
@@ -65,13 +65,13 @@ img, svg {
 }
 
 .header-inner {
-  max-width: 960px;
+  max-width: 1100px;
   margin: 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
+  gap: 14px;
+  direction: ltr;
 }
 
 .brand {
@@ -80,35 +80,48 @@ img, svg {
   gap: 10px;
   text-decoration: none;
   color: #fff;
+  justify-self: start;
 }
 
 .brand .tooth {
-  font-size: 1.7rem;
+  font-size: 2rem;
 }
 
 .brand-text {
   display: flex;
   flex-direction: column;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .brand-name {
-  font-size: 1.35rem;
-  font-weight: 800;
+  font-size: 1.8rem;
+  font-weight: 700;
   letter-spacing: 0.2px;
 }
 
+.brand-name .logo-letter {
+  font-size: 1.5em;
+  font-weight: 900;
+}
+
 .brand-tagline {
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.92);
   letter-spacing: 0.2px;
+}
+
+.brand-tagline strong {
+  font-weight: 800;
 }
 
 .main-nav {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
+  justify-content: center;
+  grid-column: 2;
+  direction: rtl;
 }
 
 .main-nav a {
@@ -123,6 +136,46 @@ img, svg {
 .main-nav a:hover,
 .main-nav a.active {
   background: rgba(255, 255, 255, 0.22);
+}
+
+.btn-signup {
+  display: inline-block;
+  background: #fff;
+  color: var(--color-primary-dark);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 9px 18px;
+  border-radius: 999px;
+  white-space: nowrap;
+  justify-self: end;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.btn-signup:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+  .header-inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .brand {
+    justify-self: center;
+  }
+
+  .main-nav {
+    grid-column: 1;
+    justify-content: center;
+  }
+
+  .btn-signup {
+    justify-self: center;
+  }
 }
 
 /* ---------- Layout ---------- */
@@ -194,7 +247,7 @@ main {
 .card:hover {
   transform: translateY(-2px);
   border-color: var(--color-accent);
-  box-shadow: 0 6px 18px rgba(236, 72, 153, 0.16);
+  box-shadow: 0 6px 18px rgba(12, 143, 128, 0.18);
 }
 
 .card .card-icon {
@@ -530,7 +583,7 @@ main {
 }
 
 .shuffle-card {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: #fff;
 }
 
