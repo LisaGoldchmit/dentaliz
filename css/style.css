@@ -55,12 +55,13 @@ img, svg {
 /* ---------- Header / Nav ---------- */
 
 /* גובה ההדר קבוע ומוגדר במפורש, כדי שגובה הלוגו יוכל להיות אחוז יציב ממנו
-   (88px הדר; 68px לוגו = 77% ממנו; 10px שוליים קבועים מעל ומתחת) */
+   (80px הדר; 60px לוגו = בדיוק 75% ממנו; 10px שוליים קבועים מעל ומתחת,
+   הנובעים ממרכוז flex של ((80-60)/2) ולא מ-padding נפרד) */
 .site-header {
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: #fff;
   padding: 0 20px;
-  height: 88px;
+  height: 80px;
   display: flex;
   align-items: center;
   box-shadow: var(--shadow);
@@ -89,8 +90,8 @@ img, svg {
 }
 
 .brand-logo {
-  height: 68px;
-  max-height: 68px;
+  height: 60px;
+  max-height: 60px;
   width: auto;
   display: block;
 }
@@ -158,8 +159,8 @@ img, svg {
   }
 
   .brand-logo {
-    height: 56px;
-    max-height: 56px;
+    height: 50px;
+    max-height: 50px;
   }
 
   .main-nav {
