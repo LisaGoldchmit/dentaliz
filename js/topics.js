@@ -20,10 +20,14 @@ window.TOPICS = {
     label: "כימיה",
     icon: "🧪",
     topics: [
-      { key: "stoichiometry", label: "סטוכיומטריה" },
-      { key: "bonding", label: "מבנה וקישור" },
-      { key: "redox", label: "חמצון חיזור" },
-      { key: "energy", label: "אנרגיה" }
+      { key: "atom-periodic", label: "מבנה האטום והטבלה המחזורית" },
+      { key: "bonding", label: "קשר כימי ומבנה מולקולות" },
+      { key: "materials", label: "סוגי חומרים ותכונותיהם" },
+      { key: "stoichiometry", label: "סטוכיומטריה וחישובים בכימיה" },
+      { key: "energy", label: "אנרגיה בתגובות כימיות" },
+      { key: "redox", label: "חמצון חיזור וקורוזיה" },
+      { key: "acid-base", label: "חומצה בסיס" },
+      { key: "organic-food", label: "כימיה אורגנית וכימיה של מזון" }
     ]
   }
 };
