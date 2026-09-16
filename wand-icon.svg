@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <line x1="22" y1="82" x2="58" y2="42" stroke="#ffffff" stroke-width="7" stroke-linecap="round" />
+  <path fill="#fbbf24" d="M62,20 L65.53,30.15 L76.27,30.37 L67.71,36.85 L70.82,47.13 L62,41 L53.18,47.13 L56.29,36.85 L47.73,30.37 L58.47,30.15 Z" />
+  <path fill="#fbbf24" d="M82,10 L83.8,13.8 L88,16 L83.8,18.2 L82,22 L80.2,18.2 L76,16 L80.2,13.8 Z" />
+  <path fill="#fbbf24" d="M28,47 L29.5,50.5 L33,52 L29.5,53.5 L28,57 L26.5,53.5 L23,52 L26.5,50.5 Z" />
+</svg>

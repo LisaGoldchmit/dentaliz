@@ -77,14 +77,16 @@ img, svg {
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 4px;
   text-decoration: none;
   color: #fff;
   justify-self: start;
 }
 
-.brand .tooth {
-  font-size: 2rem;
+.brand .brand-icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
 }
 
 .brand-text {
@@ -94,13 +96,14 @@ img, svg {
 }
 
 .brand-name {
+  font-family: "Poppins", "Heebo", sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: 0.2px;
 }
 
 .brand-name .logo-letter {
-  font-size: 1.5em;
+  font-size: 0.82em;
   font-weight: 900;
 }
 
@@ -230,6 +233,10 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
+}
+
+.section-grid h3 {
+  text-align: center;
 }
 
 .card {
