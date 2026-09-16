@@ -6,10 +6,14 @@ window.TOPICS = {
     label: "מתמטיקה",
     icon: "📐",
     topics: [
-      { key: "rate", label: "בעיות הספק" },
+      { key: "word-problems", label: "בעיות מילוליות" },
+      { key: "growth-decay", label: "גדילה ודעיכה מעריכית" },
+      { key: "sequences", label: "סדרות" },
+      { key: "probability", label: "הסתברות" },
       { key: "geometry", label: "גיאומטריה" },
-      { key: "motion", label: "בעיות תנועה" },
-      { key: "probability", label: "הסתברות" }
+      { key: "analytic-geometry", label: "גיאומטריה אנליטית" },
+      { key: "trigonometry", label: "טריגונומטריה" },
+      { key: "calculus", label: "חשבון דיפרנציאלי ואינטגרלי" }
     ]
   },
   chemistry: {
