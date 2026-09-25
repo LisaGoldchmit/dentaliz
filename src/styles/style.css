@@ -15,8 +15,50 @@
   --color-correct-bg: #e6f6ec;
   --color-wrong: #c62828;
   --color-wrong-bg: #fdecea;
+  --color-surface: #ffffff;
+  --color-unanswered-bg: #eeeeee;
+  --color-info-bg: #fff8e1;
+  --color-info-border: #f0d98c;
+  --header-from: var(--color-primary);
+  --header-to: var(--color-primary-dark);
+  --signup-text: var(--color-primary-dark);
+  --btn-hover: var(--color-primary-dark);
   --radius: 14px;
   --shadow: 0 2px 10px rgba(12, 90, 80, 0.1);
+  --shadow-hover: 0 6px 18px rgba(12, 143, 128, 0.18);
+  color-scheme: light;
+}
+
+/* מצב כהה בגווני סגול. data-theme נקבע בסקריפט הקטן ב-index.html (לפני
+   הרינדור, כדי שלא יהיה הבהוב) ומתעדכן מכפתור ההחלפה בהדר.
+   שימו לב: במצב כהה --color-primary-dark משמש כצבע טקסט על רקע כהה ולכן
+   הוא בהיר; הרקעים שהשתמשו בו (הדר, hover של כפתור) מקבלים טוקנים משלהם */
+:root[data-theme="dark"] {
+  --color-primary: #7c5cd6;
+  --color-primary-dark: #c3b5ef;
+  --color-primary-light: #28252f;
+  --color-accent: #c3b5ef;
+  --color-accent-light: #25232b;
+  --color-bg: #111113;
+  --color-card: #1a1a1e;
+  --color-surface: #212126;
+  --color-text: #e9e8ee;
+  --color-muted: #a3a1ad;
+  --color-border: #2e2d34;
+  --color-correct: #5ed891;
+  --color-correct-bg: #16291e;
+  --color-wrong: #ff8a8a;
+  --color-wrong-bg: #33191c;
+  --color-unanswered-bg: #28272d;
+  --color-info-bg: #1f1e24;
+  --color-info-border: #45424f;
+  --header-from: #2e1b52;
+  --header-to: #1a1030;
+  --signup-text: #1a1a1e;
+  --btn-hover: #6a4bc4;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
 }
 
 * {
@@ -65,7 +107,7 @@ img, svg {
 /* גובה ההדר קבוע ומוגדר במפורש, כדי שגובה הלוגו יוכל להיות אחוז יציב ממנו
    (108px הדר; 88px לוגו; המרכוז האנכי כולו מ-flex, אין padding אנכי נפרד) */
 .site-header {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  background: linear-gradient(135deg, var(--header-from), var(--header-to));
   color: #fff;
   padding: 0 14px;
   height: 108px;
@@ -78,8 +120,8 @@ img, svg {
 }
 
 /* direction: rtl (ולא ltr) כדי שהילד הראשון ב-DOM (.brand, הלוגו) יוצג בצד
-   ימין (תחילת השורה ב-RTL) והאחרון (.btn-signup) בצד שמאל - תואם לכיוון
-   הקריאה בעברית, בו הלוגו הוא "ההתחלה" של העמוד */
+   ימין (תחילת השורה ב-RTL) והכפתורים בצד שמאל - תואם לכיוון הקריאה
+   בעברית, בו הלוגו הוא "ההתחלה" של העמוד */
 .header-inner {
   width: 100%;
   display: grid;
@@ -105,21 +147,68 @@ img, svg {
   display: block;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: end;
+  grid-column: 3;
+}
+
+.theme-toggle,
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.theme-toggle:hover,
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* הניווט תמיד בתפריט הנפתח מההמבורגר (ההרשמה נשארת גלויה בהדר). התפריט ממוקם
+   ביחס להדר (sticky הוא אלמנט ממוקם) ונפתח ממש מתחתיו, בצד שמאל - מתחת לכפתור */
+.header-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  inset-inline-end: 14px;
+  width: 280px;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 14px 16px;
+  background: linear-gradient(135deg, var(--header-from), var(--header-to));
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.site-header.menu-open .header-menu {
+  display: flex;
+}
+
 .main-nav {
   display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  justify-content: center;
-  grid-column: 2;
-  direction: rtl;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .main-nav a {
   color: #fff;
   text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-size: 0.95rem;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 1rem;
   transition: background 0.15s ease;
 }
 
@@ -131,14 +220,13 @@ img, svg {
 .btn-signup {
   display: inline-block;
   background: #fff;
-  color: var(--color-primary-dark);
+  color: var(--signup-text);
   text-decoration: none;
   font-weight: 700;
   font-size: 0.9rem;
   padding: 9px 18px;
   border-radius: 999px;
   white-space: nowrap;
-  justify-self: end;
   transition: background 0.15s ease, transform 0.15s ease;
 }
 
@@ -148,37 +236,51 @@ img, svg {
 }
 
 @media (max-width: 720px) {
-  /* במסך צר ההדר עובר לפריסה מוערמת (לוגו / ניווט / כפתור), ולכן גובהו
-     חייב להיות גמיש ולא קבוע; הלוגו עצמו עדיין מקבל גובה קבוע משלו,
-     מכוון לפריסה המוערמת, עם שוליים קבועים מעל ומתחת */
+  /* במסך צר ההדר נמוך יותר, והתפריט נפתח לכל רוחב המסך */
   .site-header {
-    height: auto;
-    padding: 14px 20px;
-  }
-
-  .header-inner {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
-    row-gap: 10px;
-  }
-
-  .brand {
-    justify-self: center;
+    height: 76px;
+    padding: 0 16px;
   }
 
   .brand-logo {
-    height: 64px;
-    max-height: 64px;
+    height: 56px;
+    max-height: 56px;
   }
 
-  .main-nav {
-    grid-column: 1;
-    justify-content: center;
+  .header-menu {
+    inset-inline: 0;
+    width: auto;
+    padding: 12px 16px 18px;
+    border-radius: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .header-inner,
+  .header-actions {
+    gap: 8px;
   }
 
   .btn-signup {
-    justify-self: center;
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  /* בטלפון צר במיוחד מקטינים את הלוגו כדי שכפתור ההרשמה ייכנס בשורה */
+  .site-header {
+    padding: 0 12px;
+  }
+
+  .brand-logo {
+    height: 40px;
+    max-height: 40px;
+  }
+
+  .theme-toggle,
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
   }
 }
 
@@ -281,7 +383,7 @@ main {
 .card:hover {
   transform: translateY(-2px);
   border-color: var(--color-accent);
-  box-shadow: 0 6px 18px rgba(12, 143, 128, 0.18);
+  box-shadow: var(--shadow-hover);
 }
 
 .card .card-icon {
@@ -325,7 +427,7 @@ main {
 }
 
 .btn:hover {
-  background: var(--color-primary-dark);
+  background: var(--btn-hover);
 }
 
 .btn.secondary {
@@ -438,7 +540,7 @@ main {
   align-items: center;
   gap: 10px;
   text-align: right;
-  background: #fff;
+  background: var(--color-surface);
   border: 1.5px solid var(--color-border);
   border-radius: 10px;
   padding: 12px 14px;
@@ -534,7 +636,7 @@ main {
   height: 38px;
   border-radius: 8px;
   border: 1.5px solid var(--color-border);
-  background: #fff;
+  background: var(--color-surface);
   cursor: pointer;
   font-size: 0.88rem;
   color: var(--color-muted);
@@ -603,7 +705,7 @@ main {
 }
 
 .review-tag.unanswered {
-  background: #eee;
+  background: var(--color-unanswered-bg);
   color: var(--color-muted);
 }
 
@@ -647,8 +749,8 @@ main {
 }
 
 .info-box {
-  background: #fff8e1;
-  border: 1px solid #f0d98c;
+  background: var(--color-info-bg);
+  border: 1px solid var(--color-info-border);
   border-radius: 10px;
   padding: 14px 16px;
   font-size: 0.92rem;
